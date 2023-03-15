@@ -41,12 +41,12 @@ public class StudentDTO {
 		this.studentMobile = studentMobile;
 	}
 	
+	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return "StudentDTO [id=" + id + ", studentNumber=" + studentNumber + ", studentName=" + StudentName + ", studentMajor=" + studentMajor + ", studentMobile=" + studentMobile + "]";  
+		return "StudentDTO [id=" + id + ", studentNumber=" + studentNumber + ", StudentName=" + StudentName
+				+ ", studentMajor=" + studentMajor + ", studentMobile=" + studentMobile + "]";
 	}
-	
 	
 	@Override
 	public int hashCode() {
@@ -67,6 +67,8 @@ public class StudentDTO {
 				&& Objects.equals(studentMobile, other.studentMobile)
 				&& Objects.equals(studentNumber, other.studentNumber);
 	}
+	
+	
 	
 	
 	
