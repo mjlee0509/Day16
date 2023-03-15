@@ -1,5 +1,7 @@
 package day15;
 
+import java.util.Objects;
+
 public class StudentDTO {
 	private Long id;
 	private String studentNumber;
@@ -44,6 +46,29 @@ public class StudentDTO {
 		// TODO Auto-generated method stub
 		return "StudentDTO [id=" + id + ", studentNumber=" + studentNumber + ", studentName=" + StudentName + ", studentMajor=" + studentMajor + ", studentMobile=" + studentMobile + "]";  
 	}
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(StudentName, id, studentMajor, studentMobile, studentNumber);
+		
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StudentDTO other = (StudentDTO) obj;
+		return Objects.equals(StudentName, other.StudentName) && Objects.equals(id, other.id)
+				&& Objects.equals(studentMajor, other.studentMajor)
+				&& Objects.equals(studentMobile, other.studentMobile)
+				&& Objects.equals(studentNumber, other.studentNumber);
+	}
+	
+	
 	
 
 }

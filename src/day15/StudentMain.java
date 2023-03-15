@@ -37,6 +37,21 @@ public class StudentMain {
 		studentDTO2.setStudentMobile("010-2222-2222");
 		
 		studentMap.put(studentDTO2.getId(), studentDTO2);
+		
+		
+		
+		
+		
+		
+		// 1) DTO와 DTO2에 같은 값이 들어있다고 쳐보자
+		System.out.println(studentDTO.equals(studentDTO2));		// = false가 뜬다!
+		
+		// 2) 이렇게 하나하나 비교하던가, 아니면...
+		System.out.println(studentDTO.getId().equals(studentDTO2));		
+		
+		// 3) DTO -> 우클;source -> hashcode and equals 추가 후 1)의 코드를 돌리면 true가 뜬다 :D
+		// 결론 : 두 객체의 필드값이 모두 일치하는지 판단하려면 hashCode(), equals()메소드를 재정의해야 한다
+
 
 		
 		// 반복문으로 출력해보자
