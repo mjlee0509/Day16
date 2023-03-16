@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class BoradDTO {
+public class BoardDTO {
 	
 	private static int number = 100;
 	private final static DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 hh:mm:ss"); 
@@ -16,7 +16,7 @@ public class BoradDTO {
 	private int cnt;
 	private String postDate;
 	
-	public BoradDTO() {
+	public BoardDTO() {
 		this.bno = "B" + number++;
 		this.postDate = DTF.format(LocalDateTime.now());
 	}
@@ -75,10 +75,16 @@ public class BoradDTO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BoradDTO other = (BoradDTO) obj;
+		BoardDTO other = (BoardDTO) obj;
 		return Objects.equals(bno, other.bno) && Objects.equals(cnt, other.cnt)
 				&& Objects.equals(postDate, other.postDate) && Objects.equals(title, other.title)
 				&& Objects.equals(writer, other.writer);
+	}
+
+	public void print() {
+		System.out.println( bno + "\t" + title + "\t\t\t" + writer + "\t" + cnt + "\t" + postDate);
+		// TODO Auto-generated method stub
+		
 	}
 
 //	public void setPostDate(String postDate) {

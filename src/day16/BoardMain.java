@@ -42,6 +42,7 @@ public class BoardMain {
 				service.test();
 
 			} else if (menu == 7) {
+				service.search();
 				
 			} else if (menu == 0) {
 				break;

@@ -10,73 +10,116 @@ import day15.StudentDTO;
 public class BoardRepository {
 //	private List<BoradDTO> list = new ArrayList<>();
 
-	private Map<String, BoradDTO> boardMap = new HashMap<>();
+	private Map<String, BoardDTO> boardMap = new HashMap<>();
 
-	public boolean save(BoradDTO boardDTO) {
-		if (boardMap.put(boardDTO.getBno(), boardDTO) == null) {
-			return true;
+//	public boolean save(BoradDTO boardDTO) {
+//		if (boardMap.put(boardDTO.getBno(), boardDTO) == null) {
+//			return true;
+//		}
+//		return false;
+//	}
+
+	public boolean save(BoardDTO boardDTO) {
+		BoardDTO result = boardMap.put(boardDTO.getBno(), boardDTO);	//put(key, value)
+		if (result == null) {
+		return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
-
-	public Map<String, BoradDTO> findAll() {
+		
+	public Map<String, BoardDTO> findAll() {	// <-- 여길 잘 봐야...; Map<key, value>???; value 타입이 BoardDTO인 이유는? 
 		return boardMap;
 	}
+	
 
-	public BoradDTO findById(String bno) {
-//		for (BoradDTO boardDTO : list) {
-//			if (boardDTO.getBno().equals(bno)) {
-//				return boardDTO;
-
-		for (String map : boardMap.keySet()) {
-//			System.out.println();
-			if (boardMap.get(map).getBno().equals(bno)) {
-				return boardMap.get(map);
+//	public BoardDTO findById(String bno) {
+////		for (BoradDTO boardDTO : list) {
+////			if (boardDTO.getBno().equals(bno)) {
+////				return boardDTO;
+//
+//		for (String map : boardMap.keySet()) {
+////			System.out.println();
+//			if (boardMap.get(map).getBno().equals(bno)) {
+//				return boardMap.get(map);
+//			}
+//
+//		}
+//		return null;
+//	}
+	
+	public BoardDTO findById(String bno) {
+		/*
+		- map 반복문 돌리고
+		- bno와 일치하는 객체를 착고
+		- 찾으면 리턴
+		*/
+		for (String key : boardMap.keySet()) {
+			if(bno.equals(boardMap.get(key).getBno())) {	//boardMap.get(key)까지가 객체; bno와 비교 불가; 따라서 .getBno()까지 써줘야 입력받은 bno와 비교가 가능해짐
+			return boardMap.get(key);	
 			}
-
 		}
 		return null;
+
 	}
 
-//	public BoradDTO findById(String bno) {
-//	for(String b : bmap.keySet()) {
-//		//키값을 가져와서 b에서 반복한다
-//	System.out.println(bno);
-//	
-//	System.out.println(bmap.get(b).equals(bno));
-//		//bmap의 키값인 b와 입력받은 bno
-//	
-//	return bmap.get(b);
-//	//zlrkqtdp 벨류값
-//	}
-//	return null;
-//}
-//
 
-	public boolean update(BoradDTO boardDTO, String bno) {
-		for (String map : boardMap.keySet()) {
-			if (boardMap.get(map).getBno().equals(bno)) {
-				boardMap.get(map).setTitle(boardDTO.getTitle());
-				boardMap.get(map).setWriter(boardDTO.getWriter());
+//	public boolean update(String updateTitle, String updateWriter, String bno) {
+//		for (String map : boardMap.keySet()) {
+//			if (boardMap.get(map).getBno().equals(bno)) {
+//				boardMap.get(map).setTitle(updateTitle);
+//				boardMap.get(map).setWriter(updateWriter);
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
+	
+	public boolean update(String updateTitle, String updateWriter, String bno) {
+		for (String key : boardMap.keySet()) {
+			if (bno.equals(boardMap.get(key).getBno())) {
+				boardMap.get(key).setTitle(updateTitle);
+				boardMap.get(key).setWriter(updateWriter);
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
+
 ////	public boolean delete(BoardDTO boardDTO) {	
 ////		return list.remove(boardDTO);	 
 ////	}	
 //
+//	public boolean delete(String bno) {
+//		for (String map : boardMap.keySet()) {
+//			if (boardMap.get(map).getBno().equals(bno)) {
+//				boardMap.remove(map);
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
+	
 	public boolean delete(String bno) {
-		for (String map : boardMap.keySet()) {
-			if (boardMap.get(map).getBno().equals(bno)) {
-				boardMap.remove(map);
+		for(String key: boardMap.keySet()) {
+			if(bno.equals(boardMap.get(key).getBno())) {
+				boardMap.remove(key);
 				return true;
 			}
 		}
 		return false;
 	}
 
-	}
 
+	public List<BoardDTO> search(String writer) {
+		List<BoardDTO> list = new ArrayList<>();
+		for (String b : boardMap.keySet()) {
+			if (boardMap.get(b).getWriter().equals(writer)) {
+				list.add(boardMap.get(b));
+			}
+		}
+		return list;
+
+	}
+}
