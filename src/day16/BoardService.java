@@ -123,28 +123,35 @@ public class BoardService {
 		for (int i = 1; i < 6; i++) {
 			BoardDTO boardDTO = new BoardDTO();
 			boardDTO.setTitle("title" + i);
+//			String newTitle = "title" + i;		<-- 이렇게도 쓸 수 있다
 			boardDTO.setWriter("writer" + i);
-			br.save(boardDTO);	// repository 따로 만들 필요 없이 save 가져다 쓰시오
+//			String newWriter = "writer" + i;	<-- 이렇게도 쓸 수 있다
+			br.save(boardDTO);	// repository 따로 만들 필요 없이 save 가져다 쓰시오; 반복문이 돌 때마다 save 호출
 		}
 		return null;
 
 	}
 
 	public void search() {
-		System.out.print("작성자 >>> ");
+		System.out.print("검색어 >>> ");
 		String writer = sc.next();
 		sc.nextLine();
 		List<BoardDTO> list = br.search(writer);
 		System.out.println("글번호\t제목\t\t\t작성자\t조회수\t게시일");
 		System.out.println("-------------------------------------------------------------------------");
-		if (list == null) {
-			System.out.println("게시물을 찾을 수 없습니다");
-		} else {
-			for (BoardDTO b : list) {
-				System.out.println(b);
-			}
+//		if (list == null) {
+//			System.out.println("게시물을 찾을 수 없습니다");
+//		} else {
+//			for (BoardDTO b : list) {
+//				System.out.println(b);
+//			}
+//		}
+		for(BoardDTO b : list) {
+			b.print();			// <-- 이렇게 쉽게 된다고?
 		}
 
 	}
+	
+
 
 }

@@ -113,10 +113,15 @@ public class BoardRepository {
 
 
 	public List<BoardDTO> search(String writer) {
-		List<BoardDTO> list = new ArrayList<>();
-		for (String b : boardMap.keySet()) {
-			if (boardMap.get(b).getWriter().equals(writer)) {
-				list.add(boardMap.get(b));
+		List<BoardDTO> list = new ArrayList<>();	// <-- 검색결과를 담을 리스트 선언
+		for (String key : boardMap.keySet()) {		// <-- 찾아야하니까 반복문을 돌려야지
+			if (boardMap.get(key).getWriter().equals(writer)) {
+				list.add(boardMap.get(key));
+				
+//				BoardDTO result = boardMap.get(key);
+//				list.add(result);		--> 이렇게 쓸 수도 있다
+				
+//				return list;			--> for문이 끝나야 검색 결과가 만들어지기 떄문에 for문 안에서 리턴을 받지 않는다
 			}
 		}
 		return list;
